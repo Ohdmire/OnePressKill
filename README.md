@@ -1,2 +1,2 @@
-# OnePressKill
- 能够一键结束进程
+## 使用教程
+https://ohdmire.github.io/post/onepresskill/
