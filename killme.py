@@ -21,12 +21,12 @@ def on_release(key):
 #杀死进程
 def kill():
     now_win = win32gui.GetForegroundWindow()
-    now_process=win32process.GetWindowThreadProcessId(now_win)[1]
-    target=r'taskkill /pid {} /F /T'.format(now_process)
+    now_process = win32process.GetWindowThreadProcessId(now_win)[1]
+    target = r'taskkill /pid {} /F /T'.format(now_process)
     os.system(target)
 
 #开始判断管理员权限
-if is_admin()==False:
+if is_admin() == False:
     print("警告:当前非管理员身份运行,可能导致kill失败")
 
 #开始监听
