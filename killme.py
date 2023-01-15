@@ -1,5 +1,5 @@
-import win32.win32gui as win32gui
-import win32.win32process as win32process
+import win32gui
+import win32process
 import os
 from pynput.keyboard import Listener,Key
 import ctypes
