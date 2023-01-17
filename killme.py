@@ -1,8 +1,12 @@
 import win32gui
 import win32process
+import psutil
 import os
 from pynput.keyboard import Listener,Key
 import ctypes
+
+# 排除列表
+whitelist=["explorer.exe"]
 
 #判断是否有管理员权限
 def is_admin():
@@ -22,8 +26,10 @@ def on_release(key):
 def kill():
     now_win = win32gui.GetForegroundWindow()
     now_process = win32process.GetWindowThreadProcessId(now_win)[1]
-    target = r'taskkill /pid {} /F /T'.format(now_process)
-    os.system(target)
+    tprocess=psutil.Process(pid=now_process)
+    if whitelist.count(tprocess.name())==0:    ##判断是否白名单进程
+        target = r'taskkill /pid {} /F /T'.format(now_process)
+        os.system(target)
 
 #开始判断管理员权限
 if is_admin() == False:
