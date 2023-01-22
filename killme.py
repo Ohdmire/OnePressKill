@@ -24,8 +24,15 @@ def on_release(key):
 
 #杀死进程
 def kill():
+    # 方案1 指哪打哪
+    # point =win32gui.GetCursorPos()
+    # now_point=win32gui.WindowFromPoint(point)
+    # now_process = win32process.GetWindowThreadProcessId(now_point)[1]
+
+    #方案2 获取当前激活的窗口
     now_win = win32gui.GetForegroundWindow()
     now_process = win32process.GetWindowThreadProcessId(now_win)[1]
+
     tprocess=psutil.Process(pid=now_process)
     if whitelist.count(tprocess.name())==0:    ##判断是否白名单进程
         target = r'taskkill /pid {} /F /T'.format(now_process)
@@ -39,3 +46,5 @@ if is_admin() == False:
 with Listener(
         on_release=on_release) as listener:
     listener.join()
+
+
