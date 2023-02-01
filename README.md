@@ -1,2 +1,2 @@
 ## 使用教程
-https://ohdmire.github.io/post/onepresskill/
+https://ohdmire.github.io/p/onepresskill/
